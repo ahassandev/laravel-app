@@ -103,15 +103,16 @@ class AuthController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed'
+            'email' => 'required|email',
+            'role' => 'required|in:user,admin,super_admin'
         ]);
 
         $user = User::find($id);
 
         $user->update([
             'name' => $request->name,
-            'email' => $request->email
+            'email' => $request->email,
+            'role' => $request->role,
         ]);
 
         return redirect('/users');

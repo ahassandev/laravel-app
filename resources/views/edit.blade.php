@@ -23,5 +23,16 @@
     </div>
     <br><br>
 
-    <button type="submit" style="padding: 10px; cursor: pointer;">Update User</button>
+
+    <div>
+        <label>Role:</label> <br>
+        <select name="role" class="form-control" style="font-size: 20px; width: 275px;">
+            <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+            <option value="super_admin" {{ $user->role == 'super_admin' ? 'selected' : '' }}>Super Admin</option>
+        </select>
+    </div>
+
+
+    <button type="submit" style="padding: 10px; cursor: pointer; margin-top: 20px;">Update User</button>
 </form>
