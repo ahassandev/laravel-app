@@ -11,11 +11,37 @@
 
     <h2>All Users</h2>
 
-    <a href="user/create">
-        <button style="padding: 10px; cursor: pointer; margin-bottom: 20px;" class="text-red-500">
-            Add New User
-        </button>
-    </a>
+    <div style="display: flex; justify-content: space-between; justify-items: center; margin-bottom: 20px;">
+        <a href="user/create">
+            <button style="padding: 10px; cursor: pointer;" class="text-red-500">
+                Add New User
+            </button>
+        </a>
+        <form method="GET" action="{{ route('users') }}">
+
+            <input type="text" style="padding: 8px; font-size: 15px;" name="id" placeholder="Search by ID"
+                value="{{ request('id') }}">
+
+            <input type="text" style="padding: 8px; font-size: 15px;" name="name" placeholder="Search by Name"
+                value="{{ request('name') }}">
+
+            <input type="text" style="padding: 8px; font-size: 15px;" name="email" placeholder="Search by Email"
+                value="{{ request('email') }}">
+
+            <button type="submit" style="padding: 10px; cursor: pointer;">Search</button>
+
+            @if (request()->anyFilled(['id', 'name', 'email']))
+                <a href="{{ route('users') }}" style="text-decoration: none;">
+                    <button type="button"
+                        style="padding: 10px; cursor: pointer; background-color: #f0f0f0; border: 1px solid #ccc; margin-left: 5px;">
+                        Clear Filters
+                    </button>
+                </a>
+            @endif
+        </form>
+
+    </div>
+
 
     <table border="1" style="width:90%; font-size: 28px; border-collapse: collapse;">
         <thead>
@@ -46,6 +72,11 @@
         </tbody>
     </table>
 
+    <script>
+        // Clean the URL address bar after the page has loaded
+        // This ensures that hitting "Refresh" will reload the page without search parameters
+        window.history.replaceState({}, document.title, window.location.pathname);
+    </script>
 </body>
 
 </html>

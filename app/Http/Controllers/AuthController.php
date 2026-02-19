@@ -65,11 +65,6 @@ class AuthController extends Controller
     }
 
 
-    public function users()
-    {
-        $users = User::all();
-        return view('users', compact('users'));
-    }
 
     public function  createUser()
     {

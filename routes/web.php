@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Symfony\Component\Routing\Router;
+use App\Http\Controllers\UserController;
 
 
 
@@ -19,11 +20,12 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/users', [UserController::class, 'index'])->name('users');
+
 
 Route::middleware('auth', 'role')->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard']);
 
-    Route::get('/users', [AuthController::class, 'users'])->name('users');
     Route::get('/user/create', [AuthController::class, 'createUser']);
     Route::post('/user/create', [AuthController::class, 'storeUser']);
     Route::get('/user/{id}/edit', [AuthController::class, 'editUser'])->name('users.edit');
@@ -36,7 +38,6 @@ Route::middleware('auth', 'role')->group(function () {
 Route::middleware('auth', 'role')->group(function () {
     Route::get('/admin/dashboard', [AuthController::class, 'dashboard']);
 
-    Route::get('/admin/users', [AuthController::class, 'users'])->name('users');
     Route::get('/admin/user/create', [AuthController::class, 'createUser']);
     Route::post('/admin/user/create', [AuthController::class, 'storeUser']);
     Route::get('/admin/user/{id}/edit', [AuthController::class, 'editUser'])->name('users.edit');
