@@ -20,11 +20,12 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/users', [UserController::class, 'index'])->name('users');
 
 
-Route::middleware('auth', 'role')->group(function () {
+
+Route::middleware(['auth', 'role'])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard']);
+    Route::get('/users', [UserController::class, 'index'])->name('users');
 
     Route::get('/user/create', [AuthController::class, 'createUser']);
     Route::post('/user/create', [AuthController::class, 'storeUser']);
@@ -35,7 +36,7 @@ Route::middleware('auth', 'role')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
 });
 
-Route::middleware('auth', 'role')->group(function () {
+Route::middleware(['auth', 'role'])->group(function () {
     Route::get('/admin/dashboard', [AuthController::class, 'dashboard']);
 
     Route::get('/admin/user/create', [AuthController::class, 'createUser']);

@@ -17,6 +17,18 @@
                 Add New User
             </button>
         </a>
+
+
+        @if ($errors->any())
+            <div style="color: red; margin-bottom: 10px;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form method="GET" action="{{ route('users') }}">
 
             <input type="text" style="padding: 8px; font-size: 15px;" name="id" placeholder="Search by ID"
