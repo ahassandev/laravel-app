@@ -16,9 +16,10 @@
 
         <div>
             <label for="name">Name:</label><br>
-            <input id="name" type="text" name="name" value="{{ old('name') }}">
+            <input id="name" type="text" style="width: 20%; padding: 5px;" name="name"
+                value="{{ old('name') }}">
             @error('name')
-                <div style="color:red; font-size:12px">{{ $message }}</div>
+                <div style="color:red; font-size:15px">{{ $message }}</div>
             @enderror
         </div>
 
@@ -26,7 +27,8 @@
 
         <div>
             <label for="email">Email:</label><br>
-            <input id="email" type="email" name="email" value="{{ old('email') }}">
+            <input id="email" style="width: 20%; padding: 5px;" type="email" name="email"
+                value="{{ old('email') }}">
             @error('email')
                 <div style="color:red; font-size:12px">{{ $message }}</div>
             @enderror
@@ -36,7 +38,7 @@
 
         <div>
             <label for="password">Password:</label><br>
-            <input id="password" type="password" name="password">
+            <input id="password" style="width: 20%; padding: 5px;" type="password" name="password">
             @error('password')
                 <div style="color:red; font-size:12px">{{ $message }}</div>
             @enderror
